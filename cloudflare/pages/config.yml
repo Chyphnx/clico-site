@@ -1,0 +1,39 @@
+project:
+  name: "clico.global"
+  slug: "clico-site"
+  domain: "clico.global"
+  repository: "github.com/cpx/clico-site"
+  production_branch: "main"
+
+build:
+  command: "npm run build"
+  directory: ".next"
+  framework: "Next.js 14"
+  node_version: 20
+  environment:
+    CF_ACCOUNT_ID: "${CF_ACCOUNT_ID}"
+    CF_API_TOKEN: "${CF_API_TOKEN}"
+  hooks:
+    - name: "Wrangler Pages publish"
+      command: "wrangler pages publish .next --project clico-site --branch main"
+      when: after_build
+
+deploy:
+  previews:
+    auto_build: true
+    branch: "main"
+  production:
+    domain: "clico.global"
+    environment: "production"
+  telemetry:
+    analytics: true
+    logs: true
+
+wrangler:
+  manifest: "wrangler.toml"
+  commands:
+    deploy: "wrangler pages publish .next --project clico-site --branch main --env production"
+
+notes:
+  - "Social links on /dev are proxied by Cloudflare Workers when the project needs auth injection."
+  - "Secrets stay in Cloudflare Vault; rotate the CF_API_TOKEN after every 90 day window."

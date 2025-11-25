@@ -1,2 +1,11 @@
 name = "clico-site"
+account_id = "${CLOUDFLARE_ACCOUNT_ID}"
+compatibility_date = "2025-11-24"
 pages_build_output_dir = ".next"
+
+[vars]
+NEXT_PUBLIC_BASE_URL = "https://clico.global"
+NEXT_PUBLIC_SUPPORT_EMAIL = "hello@clico.dev"
+
+[build]
+command = "npm run build"

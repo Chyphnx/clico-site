@@ -1,0 +1,5 @@
+# Force production canonical and move legacy domain
+https://www.clico.global/* https://clico.global/:splat 301
+https://clico.dev/* https://clico.global/:splat 301
+https://www.clico.dev/* https://clico.global/:splat 301
+https://dev.clico.global/* https://clico.global/:splat 301

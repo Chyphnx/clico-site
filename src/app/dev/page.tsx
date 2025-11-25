@@ -24,10 +24,30 @@ const stack = [
 ];
 
 const socials = [
-  { network: "X", handle: "@clico_global", href: "https://x.com/clico_global" },
-  { network: "LinkedIn", handle: "Clico Global", href: "https://www.linkedin.com/company/clico-global" },
-  { network: "YouTube", handle: "Clico Global", href: "https://www.youtube.com/@clicoglobal" },
-  { network: "GitHub", handle: "github.com/clico-global", href: "https://github.com/clico-global" },
+  {
+    network: "X",
+    handle: "@clico_global",
+    href: "/socials?target=x",
+    dest: "https://x.com/clico_global",
+  },
+  {
+    network: "LinkedIn",
+    handle: "Clico Global",
+    href: "/socials?target=linkedin",
+    dest: "https://www.linkedin.com/company/clico-global",
+  },
+  {
+    network: "YouTube",
+    handle: "Clico Global",
+    href: "/socials?target=youtube",
+    dest: "https://www.youtube.com/@clicoglobal",
+  },
+  {
+    network: "GitHub",
+    handle: "github.com/clico-global",
+    href: "/socials?target=github",
+    dest: "https://github.com/clico-global",
+  },
 ];
 
 const signals = [
@@ -128,7 +148,9 @@ export default function Dev() {
                     {item.network}
                   </span>
                   <span className="text-base font-semibold text-white">{item.handle}</span>
-                  <span className="text-xs text-slate-300">Cloudflare Edge proxied</span>
+                  <span className="text-xs text-slate-300">
+                    Cloudflare Edge proxied · {item.dest}
+                  </span>
                 </Link>
               ))}
             </div>

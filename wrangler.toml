@@ -6,6 +6,7 @@ pages_build_output_dir = ".next"
 [vars]
 NEXT_PUBLIC_BASE_URL = "https://clico.global"
 NEXT_PUBLIC_SUPPORT_EMAIL = "hello@clico.dev"
+SOCIAL_PROXY_AUTH = "${SOCIAL_PROXY_AUTH}"
 
 [build]
 command = "npm run build"

@@ -13,6 +13,7 @@ build:
   environment:
     CF_ACCOUNT_ID: "${CF_ACCOUNT_ID}"
     CF_API_TOKEN: "${CF_API_TOKEN}"
+    SOCIAL_PROXY_AUTH: "${SOCIAL_PROXY_AUTH}"
   hooks:
     - name: "Wrangler Pages publish"
       command: "wrangler pages publish .next --project clico-site --branch main"
@@ -37,3 +38,5 @@ wrangler:
 notes:
   - "Social links on /dev are proxied by Cloudflare Workers when the project needs auth injection."
   - "Secrets stay in Cloudflare Vault; rotate the CF_API_TOKEN after every 90 day window."
+  - "Release workflow: 1) Run `./deploy-clico.sh` to stage, commit, and push to main; 2) Cloudflare Pages builds and publishes automatically via the hook and preview URLs appear for the branch; 3) Validate the `/dev` worker proxies before handing off preview tokens and rotate `SOCIAL_PROXY_AUTH` if a key has leaked."
+  - "Preview tokens: use the `cf preview` script in `devops/scripts` (or `wrangler pages preview`/`wrangler pages env preview`) to generate short-lived URLs and share them with QA."
